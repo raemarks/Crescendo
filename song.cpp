@@ -76,4 +76,10 @@ void Song::skip() {
 	//do more here
 }
 
+int Song::calcShuffleScore() {
+	int score = 0;
+	//math stuff here
+	return score;
+}
+
 

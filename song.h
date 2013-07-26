@@ -28,6 +28,8 @@ class Song {
 
 	void setFilePath(string filepath);
 
+	int calcShuffleScore();
+
 
 	private: 
 		int playCount;
