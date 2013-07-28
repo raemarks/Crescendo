@@ -13,6 +13,7 @@ class Player
 {
 public:
 	Player();
+	~Player();
 
 	void Play();
 	void Pause();
@@ -25,6 +26,8 @@ private:
 	//MusicList
 	Mix_Music *current;
 	Mix_Music *next;
+
+	bool MusicPaused;
 };
 
 #endif
