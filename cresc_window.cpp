@@ -10,11 +10,16 @@ CrescWindow::CrescWindow() {
 		fprintf(stderr, "Font failed to load: %s\n", SDL_GetError());
 	}
 
+}
+
+int CrescWindow::initGraphics() {
 	playButton = new CrG_Button(10,10,48,48);
-	playButton->SetImage("play.bmp");
-	playButton->SetAlt("pause.bmp");
+	playButton->SetImage("img/play.bmp");
+	playButton->SetAlt("img/pause.bmp");
 
 	nowPlaying = new CrG_Label(10,60,"Hello World!", font);
+
+	return 0;
 }
 
 CrescWindow::~CrescWindow() {

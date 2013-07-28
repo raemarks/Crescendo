@@ -1,18 +1,23 @@
 CC=g++
 PROG_NAME=crescendo
 SDL_FLAGS=`sdl-config --cflags --libs` -lSDL_mixer -lSDL_image -lSDL_ttf
+OBJ_DIR := obj
 
-all: player window button label
-	$(CC) main.cpp song.cpp label.o button.o player.o window.o -o $(PROG_NAME) $(SDL_FLAGS)
+SOURCE_FILES := main.cpp \
+	song.cpp \
+	label.cpp \
+	button.cpp \
+	player.cpp \
+	cresc_window.cpp
 
-player:
-	$(CC) -c -o player.o player.cpp
+OBJS := $(addprefix $(OBJ_DIR)/, $(SOURCE_FILES:.cpp=.o))
 
-window:
-	$(CC) -c -o window.o cresc_window.cpp
+all: $(OBJS)
+	$(CC) $(OBJS) -o $(PROG_NAME) $(SDL_FLAGS)
 
-button:
-	$(CC) -c -o button.o gui/button.cpp
+$(OBJ_DIR)/%.o: %.cpp
+	@if [ ! -d $(OBJ_DIR) ] ; then mkdir -p $(OBJ_DIR); fi
+	$(CC) -c -o $@ $<
 
-label:
-	$(CC) -c -o label.o gui/label.cpp
+clean:
+	rm -rf $(OBJ_DIR) $(PROG_NAME)

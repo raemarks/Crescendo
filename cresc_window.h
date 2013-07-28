@@ -3,8 +3,8 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_ttf.h>
 #include <string>
-#include "gui/button.h"
-#include "gui/label.h"
+#include "button.h"
+#include "label.h"
 #include "player.h"
 
 using std::string;
@@ -19,6 +19,8 @@ public:
 
 
 private:
+	int initGraphics();
+
 	void handleEvents();
 	void handleKey();
 	void handleClick();
