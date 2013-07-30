@@ -10,6 +10,12 @@ CrescWindow::CrescWindow() {
 		fprintf(stderr, "Font failed to load: %s\n", SDL_GetError());
 	}
 
+	player = new Player();
+	
+	if (initGraphics()) {
+		fprintf(stderr, "Error initializing gui elements.\n");
+		exit(1);
+	}
 }
 
 int CrescWindow::initGraphics() {
@@ -72,9 +78,9 @@ void CrescWindow::handleClick() {
 	if (playButton->WasClicked(event.button.x, event.button.y)) {
 		//Click button
 		if(playButton->Toggle()) {
-			//player->Play();
+			player->Play();
 		} else {
-			//player->Pause();
+			player->Pause();
 		}
 	}
 }

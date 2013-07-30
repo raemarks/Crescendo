@@ -10,10 +10,13 @@ Player::Player() {
 	//
 
 
+	//Start up sound card
 	if(Mix_OpenAudio(audio_rate, audio_format, audio_channels, audio_buffers)) {
 		cout << "Unable to open audio!\n";
 		exit(1);
 	}
+
+	MusicPaused = false;
 }
 
 Player::~Player() {
@@ -29,7 +32,11 @@ void Player::Play() {
 
 		//TEMP: just grab test song
 		current = Mix_LoadMUS("song.flac");
-		
+		if (!current) {
+			fprintf(stderr, "Error opening music file: %s\n", SDL_GetError());
+			exit(1);
+		}
+
 		Mix_PlayMusic(current, 0);
 	}
 }
